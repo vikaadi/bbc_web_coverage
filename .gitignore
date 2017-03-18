@@ -1,0 +1,7 @@
+src/reports/*
+*.log
+src/node_modules/*
+src/*.log
+src/.DS_Store
+*.DS_Store
+*.png

@@ -1,0 +1,27 @@
+{
+  "name": "bbc_webpage",
+  "version": "1.0.0",
+  "description": "Nightwatch UI testing",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./node_modules/nightwatch/bin/nightwatch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "author": "AG",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "devDependencies": {
+    "nightwatch-html-reporter": "^2.0.0",
+    "selenium-server": "^3.3.1",
+    "phantomjs-prebuilt": "^2.1.14"
+  },
+  "main": "nightwatch.conf.js",
+  "dependencies": {
+    "nightwatch": "^0.9.13"
+  }
+}
