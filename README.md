@@ -1,55 +1,65 @@
-BBC - Search Tests
+# BBC - Search Tests
 
-###############
-Installation:
+
+## Installation:
+
 Install Node.js
-From nodejs.org:
+From [nodejs.org](https://nodejs.org/en/download/):
 
 "Node.js is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices."
+
 There are installation packages and instructions for most major Operating systems on its website nodejs.org. Remember to install also the npm tool, which is the node package manager and is distributed with the Node.js installer.
 
-Install Nightwatch
+## Install Nightwatch
 To install the latest version using the npm command line tool, run the following:
-$ npm install -g nightwatch
+`$ npm install -g nightwatch`
+
+## Install Nightwatch-html-reporter
+To install the latest version using the npm command line tool, run the following:
+`$ npm install -g nightwatch-html-reporter`
 
 
-Setting up Test Environment
+### Setting up Test Environment
 1. Clone the github repo
 2. Go to src folder
-3. Run npm install
+3. Run `npm install` command
 
-Running Tests:
+### Running Tests:
 
 To run complete test suite use:
-$ nightwatch
+`$ nightwatch`
 
 to run individual tests use:
-$ nightwatch tests/search/****.js
+`$ nightwatch tests/search/****.js`
 
-Running on different browsers:
+### Running on different browsers:
 
-Chrome:
+## Chrome:
 By default test will run on chrome, so there is no need of specifying environment
-$ nightwatch
+`$ nightwatch`
 
-Firefox:
+## Firefox:
 If you want to execute tests on firefox browser then run following command
-$ nightwatch -e firefox
+`$ nightwatch -e firefox`
 
-Headless:
+## Headless:
 If you want to execute tests on headless browser then run following command
-$ nightwatch -e phantom
+`$ nightwatch -e phantom`
 
-Parallel Running
+## Parallel Execution
 Nightwatch supports the tests to be run in parallel. This works by specifying multiple environments in the command line, separated by comma. E.g.:
-$ nightwatch -e default,firefox,phantom
+`$ nightwatch -e default,firefox,phantom`
 Test suite will run on three environments named default (chrome), firefox and phantom in parallel.
 
 To run test scripts in parallel enable test_workers in nightwatch.json
-"test_workers" : {"enabled" : false, "workers" : "auto"}
+```"test_workers" : {"enabled" : false, "workers" : "auto"}```
+## HTML Report
+To generate HTML report for tests, run following command
+`nightwatch-html-reporter -d reports`
+Look [here](https://www.npmjs.com/package/nightwatch-html-reporter) for more themes
 
-Test Cases:
-All Filter:
+## Test Cases:
+### All Filter:
 1. Verify BBC homepage title
 2. Verify search page title
 3. Verify all filter selected by default on search result page
@@ -60,7 +70,7 @@ All Filter:
 8. Verify all articles has a tag
 9. Verify every articles has a section
 
-News Filter:
+### News Filter:
 1. Select News Filter and verify it is selected
 2. Verify every article has "News" tag
 3. Verify 10 search results showing on page
@@ -69,7 +79,7 @@ News Filter:
 6. Verify search keyword exists in article header or in summary
 7. Verify every articles has a section
 
-Programmes Filter:
+### Programmes Filter:
 1. Select Programmes Filter and verify it is selected
 2. Verify every article has "Programmes" tag
 3. Verify 10 search results showing on page
@@ -78,7 +88,7 @@ Programmes Filter:
 6. Verify search keyword exists in article header or in summary
 7. Verify every articles has a section
 
-Sport Filter:
+### Sport Filter:
 1. Select Sport Filter and verify it is selected
 2. Verify every article has "Sport" tag
 3. Verify 10 search results showing on page
@@ -87,7 +97,7 @@ Sport Filter:
 6. Verify search keyword exists in article header or in summary
 7. Verify every articles has a section
 
-About the BBC Filter:
+### About the BBC Filter:
 1. Select About the BBC Filter and verify it is selected
 2. Verify every article has "About the BBC" tag
 3. Verify 10 search results showing on page
@@ -96,7 +106,7 @@ About the BBC Filter:
 6. Verify search keyword exists in article header or in summary
 7. Verify every articles has a section
 
-Show More Results:
+### Show More Results:
 1. Verify 10 search results showing on page
 2. Verify show more result button showing another 10 search results
 3. Verify every articles has image source after clicking Show More Results
@@ -106,6 +116,14 @@ Show More Results:
 8. Verify Show More Result adding another 10 search results
 9. Verify all records have search keyword, tags, sections, images and links
 
-Test Case to be implemented:
+## Test Case to be implemented:
 Output the number of articles that have the "Business" tag with months that have less than
 31 days and then the number of the same that occur on months with 31 days. -- Function implemented, but global value is not incrementing, debugging this issue
+
+## Future Enhancements 
+1. Headless Browser: The current headless browser (phantomjs) intermittently unable to locate some elements. Update some locators so that phantomjs will able to locate everytime
+2. Implelement enviornment base url settings. Will launch url from nightwatch test_settings file, which will help to run same scripts on different envionement like qa, staging etc.
+
+Compromises:
+1. Currently there is no test case to verify if a article has Publish date or not, function is implemented and working. But I have removed this test case as some of the articles does not have date in it.
+2. Test Suite is launching url from the url available in global file instead of test_settings
