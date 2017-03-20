@@ -7,6 +7,7 @@ Java, Node and npm should be installed. Follow below steps if these software are
 
 Install Java
 Click here to download and install [Java](https://java.com/en/download/)
+
 Install Node.js
 Click here to download and install [Node.js](https://nodejs.org/en/download/):
 
@@ -33,7 +34,7 @@ Run individual test use:
 
 Skip test case:
 To skip a test case from test script, add '+' sign before the function.
-`'Verify BBC homepage title' : +function(browser)``
+`'Verify BBC homepage title' : +function(browser)`
 
 ### Running on different browsers:
 
@@ -125,10 +126,13 @@ Look [here](https://www.npmjs.com/package/nightwatch-html-reporter) for more the
 8. Verify Show More Result adding another 10 search results
 9. Verify all records have search keyword, tags, sections, images, publish date and links
 
+### Verify Links
+1. Verify every header link is working
+
 ## Known Issues
 There are some failures for Publish date and images, as some articles does not have publish date or image.
 
-## debugging
+## Debugging
 To check error details you can enable verbose logging.
 `nightwatch --verbose`
 
@@ -156,20 +160,23 @@ Use chrome to run this test, firefox and headless support are available but ther
 ### Troubleshooting
 Selenium server will automatically start with current settings. If you see error for selenium server, you can start selenium server manually.
 
-`cd src`
+Go to `src` folder
+
 Run `java -jar node_modules/selenium-server/lib/runner/selenium-server-standalone-3.3.1.jar`
 
 If you see error starting chrome or firefox drivers then you can start these with selenium server.
 
-#### MAC
-`cd src`
+#### On MAC
+Go to `src` folder
+
 Run following command.
 
 `java Dwebdriver.chrome.driver=bin/drivers/chromedriver -Dwebdriver.gecko.driver=bin/drivers/geckodriver -jar node_modules/selenium-server/lib/runner/selenium-server-standalone-3.3.1.jar`
 
-#### Windows
-#### MAC
-`cd src`
+#### On Windows
+
+Go to `src` folder
+
 Run following command.
 
 `java Dwebdriver.chrome.driver=bin/drivers/chromedriver.exe -Dwebdriver.gecko.driver=bin/drivers/geckodriver.exe -jar node_modules/selenium-server/lib/runner/selenium-server-standalone-3.3.1.jar`
