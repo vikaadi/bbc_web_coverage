@@ -11,7 +11,7 @@ module.exports = {
 		 search = browser.page.bbc.homePage();
 	},
 
-  'Select News Filter and verify it is selected' : function(browser) {
+  'Select News Filter and verify filter is selected' : function(browser) {
    browser.url(browser.globals.url);
    search.navigate().setSearchKeyword(browser, browser.globals.searchKeyword)
    search.navigate().clickNewsFilter(browser)
@@ -19,15 +19,11 @@ module.exports = {
   },
 
   'Verify every article has "News" tag' : function(browser) {
-   search.navigate().verifyFilterTag(browser, filter);
+   search.navigate().verifyFilterTag(browser, filter, browser.globals.pgCount);
   },
 
 	'Verify 10 search results showing on page' : function(browser) {
 		search.navigate().countSearchResults(browser, browser.globals.pgCount)
-	},
-
-	'Verify every articles has image source' : function(browser) {
-		search.navigate().verifyImageSrc(browser, browser.globals.pgCount);
 	},
 
 	'Verify every article headers has link' : function(browser) {
@@ -42,10 +38,12 @@ module.exports = {
 		search.navigate().verifySectionExist(browser, browser.globals.pgCount);
 	},
 
-	'Verify Publish Date Exists for Articles' : +function(browser) {
-		search.navigate().verifyArticleExist(browser);
-		//console.log("Article 31 days: " + browser.globals.Thirtyone);
-		//console.log("Article < 31 days: " + browser.globals.Thirty);
+	'Verify every articles has image source' : function(browser) {
+		search.navigate().verifyImageSrc(browser, browser.globals.pgCount);
+	},
+
+	'Verify every article has publish date' : function(browser) {
+		search.navigate().verifyPublishDateExist(browser, browser.globals.pgCount);
 	},
 
 	after : function (browser) {

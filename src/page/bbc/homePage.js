@@ -130,10 +130,10 @@ module.exports = {
 				//Verify selected filter is showing in Tag
 				verifyFilterTag : function(browser, filter, pgCount) {
 						for (var i = 1; i <= pgCount; i += 1) {
-							this.useXpath().pause(500)
+							this.useXpath().pause(1000)
 							.waitForElementVisible('//li[@data-result-number="'+ i +'"]//dt[text()="Tags"]/..//span[@class="signpost-site"]', 10000)
 							.getText('//li[@data-result-number="'+ i +'"]//dt[text()="Tags"]/..//span[@class="signpost-site"]', function(result){
-							this.assert.equal(result.value, filter);
+							browser.assert.equal(result.value, filter);
 							 })
 							 }
 			 },
@@ -172,7 +172,6 @@ module.exports = {
 		  verifyArticleExist : function(browser, pgCount){
 						for (var i = 1; i <= pgCount; i += 1) {
 								var date;
-								var date1;
 								browser.useXpath().getAttribute('//ol/li[@data-result-number="'+ i +'"]/article/aside/dl/dd/time', "datetime", function (result) {
 								date1 = result.value; //Get Date from tag
 								date = date1.substring(5,7);  //Get month
@@ -181,9 +180,6 @@ module.exports = {
 								})
 								.perform(function(){
 			          date = date1.substring(5,7);
-								//console.log("Date: " + date1.substring(5,7));
-								//console.log("Tag: " + tag);
-
 								if(tag == 'Programmes' && date == 01 || date == 03 || date == 05 || date == 07 || date == 08 || date == 10 || date == 12){
 										browser.globals.oddMonth = browser.globals.oddMonth + 1;
 									}
@@ -192,8 +188,6 @@ module.exports = {
 									}
 									})
 									}
-						console.log("Article Published in Jan/Mar/May/Jul/Aug/Oct/Dec: " + browser.globals.oddMonth);
-						console.log("Article Published in Feb/Apr/Jun/Sep/Nov: " + browser.globals.evenMonth);
 			},
      //Verify all articles has image src in it
 		 verifyImageSrc : function(browser, pgCount) {
@@ -230,6 +224,17 @@ module.exports = {
 							};
 						this.assert.equal(result,true)
 						})
+					}
+		 },
+
+		 verifyLinks : function(browser, pgCount) {
+					for (var i = 1; i <= pgCount; i += 1) {
+						browser.useXpath().waitForElementVisible('//li[@data-result-number="'+ i +'"]//h1//a', 10000)
+						.moveToElement('//li[@data-result-number="'+ i +'"]//h1//a', 10, 10)
+						.click('//li[@data-result-number="'+ i +'"]//h1//a')
+						.useCss()
+						.waitForElementVisible('body', 10000)
+						.back();
 						}
 		 },
  }]

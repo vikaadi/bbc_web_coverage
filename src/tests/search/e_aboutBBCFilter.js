@@ -11,7 +11,7 @@ module.exports = {
 		 search = browser.page.bbc.homePage();
 	},
 
-  'Select About the BBC Filter' : function(browser) {
+  'Select About the BBC Filter and verify filter is selected' : function(browser) {
       browser.url(browser.globals.url);
       search.navigate().setSearchKeyword(browser, browser.globals.searchKeyword)
       .clickAboutBBCFilter(browser)
@@ -38,10 +38,8 @@ module.exports = {
     search.navigate().verifySectionExist(browser, browser.globals.pgCount);
   },
 
-	'Verify Publish Date Exists for Articles' : +function(browser) {
-		search.navigate().verifyArticleExist(browser);
-		//console.log("Article 31 days: " + browser.globals.Thirtyone);
-		//console.log("Article < 31 days: " + browser.globals.Thirty);
+	'Verify every article has publish date' : function(browser) {
+		search.navigate().verifyPublishDateExist(browser, browser.globals.pgCount);
 	},
 
 	after : function (browser) {

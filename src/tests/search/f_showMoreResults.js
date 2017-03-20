@@ -21,9 +21,6 @@ module.exports = {
 		search.navigate().countSearchResults(browser, browser.globals.pgCount);
 	},
 
-	'Verify every articles has image source' : function(browser) {
-		search.navigate().verifyImageSrc(browser, browser.globals.pgCount);
-	},
 	'Verify every article headers has link' : function(browser) {
 		search.navigate().verifyHeadingLinks(browser, browser.globals.pgCount);
 	},
@@ -40,23 +37,22 @@ module.exports = {
 		search.navigate().verifySectionExist(browser, browser.globals.pgCount);
 	},
 
+	'Verify every articles has image source' : function(browser) {
+		search.navigate().verifyImageSrc(browser, browser.globals.pgCount);
+	},
+
 	'Verify Show More Result adding another 10 search results' : function(browser) {
 		search.navigate().clickShowMoreResults(browser);
 		search.navigate().countSearchResults(browser, browser.globals.pgCount);
 	},
 
-	'Verify all records have search keyword, tags, sections, images and links' : function(browser) {
+	'Verify all records have search keyword, tags, sections, images, links and publish date' : function(browser) {
 		search.navigate().verifyHeadingLinks(browser, browser.globals.pgCount)
 		search.navigate().verifySectionExist(browser, browser.globals.pgCount)
 		search.navigate().verifyTagExist(browser, browser.globals.pgCount)
 		search.navigate().verifySearchKeyword(browser, browser.globals.pgCount)
 		search.navigate().verifyImageSrc(browser, browser.globals.pgCount)
-	},
-
-	'Verify Publish Date Exists for Articles' : +function(browser) {
-		search.navigate().verifyArticleExist(browser, browser.globals.pgCount);
-		//console.log("Article 31 days: " + browser.globals.Thirtyone);
-		//console.log("Article < 31 days: " + browser.globals.Thirty);
+		search.navigate().verifyPublishDateExist(browser, browser.globals.pgCount)
 	},
 
 	after : function (browser) {
